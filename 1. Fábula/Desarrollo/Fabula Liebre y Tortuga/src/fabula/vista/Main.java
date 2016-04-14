@@ -27,35 +27,22 @@ public class Main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnJugar = new javax.swing.JButton();
-        lblTitulo = new javax.swing.JLabel();
         btnIniciar = new javax.swing.JButton();
         lblPartidasGanadas = new javax.swing.JLabel();
-        lblPartidasGanadasJ1 = new javax.swing.JLabel();
-        lblPartidasGanadasJ2 = new javax.swing.JLabel();
+        lblGanesLiebre = new javax.swing.JLabel();
+        lblGanador = new javax.swing.JLabel();
         lblTortuga = new javax.swing.JLabel();
         lblLiebre = new javax.swing.JLabel();
         lblSeparador = new javax.swing.JLabel();
         lblPista = new javax.swing.JLabel();
-
-        btnJugar.setFont(new java.awt.Font("Futura", 0, 15)); // NOI18N
-        btnJugar.setText("Jugar!");
-        btnJugar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnJugarActionPerformed(evt);
-            }
-        });
+        lblGanesTortuga = new javax.swing.JLabel();
+        lblEstadoLiebre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(828, 515));
         setPreferredSize(new java.awt.Dimension(828, 515));
         setSize(new java.awt.Dimension(828, 515));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblTitulo.setFont(new java.awt.Font("Futura", 1, 27)); // NOI18N
-        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitulo.setText("La Liebre y la Tortuga");
-        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 20, 304, 45));
 
         btnIniciar.setFont(new java.awt.Font("Futura", 0, 15)); // NOI18N
         btnIniciar.setText("Iniciar Carrera!");
@@ -64,19 +51,21 @@ public class Main extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 136, 40));
+        getContentPane().add(btnIniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 136, 40));
 
         lblPartidasGanadas.setFont(new java.awt.Font("Futura", 1, 18)); // NOI18N
         lblPartidasGanadas.setText("Partidas Ganadas:");
-        getContentPane().add(lblPartidasGanadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        getContentPane().add(lblPartidasGanadas, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
-        lblPartidasGanadasJ1.setFont(new java.awt.Font("Futura", 1, 15)); // NOI18N
-        lblPartidasGanadasJ1.setText("Jugador 1: 0");
-        getContentPane().add(lblPartidasGanadasJ1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, -1, -1));
+        lblGanesLiebre.setFont(new java.awt.Font("Futura", 1, 15)); // NOI18N
+        lblGanesLiebre.setText("Jugador 1: 0");
+        getContentPane().add(lblGanesLiebre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
-        lblPartidasGanadasJ2.setFont(new java.awt.Font("Futura", 1, 15)); // NOI18N
-        lblPartidasGanadasJ2.setText("Jugador 2: 0");
-        getContentPane().add(lblPartidasGanadasJ2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+        lblGanador.setFont(new java.awt.Font("Futura", 1, 18)); // NOI18N
+        lblGanador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGanador.setText("Gana la Tortuga!");
+        lblGanador.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(lblGanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 300, 180, 110));
 
         lblTortuga.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fabula/img/tortuga.png"))); // NOI18N
         lblTortuga.setVerticalAlignment(javax.swing.SwingConstants.TOP);
@@ -92,18 +81,23 @@ public class Main extends javax.swing.JFrame {
         lblSeparador.setIgnoreRepaint(true);
         getContentPane().add(lblSeparador, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 0, 40, -1));
 
-        lblPista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fabula/img/camino.png"))); // NOI18N
-        getContentPane().add(lblPista, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 190, 520, 150));
+        lblPista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fabula/img/fondo.png"))); // NOI18N
+        getContentPane().add(lblPista, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, -10, 640, 510));
+
+        lblGanesTortuga.setFont(new java.awt.Font("Futura", 1, 15)); // NOI18N
+        lblGanesTortuga.setText("Jugador 2: 0");
+        getContentPane().add(lblGanesTortuga, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, -1, -1));
+
+        lblEstadoLiebre.setFont(new java.awt.Font("Futura", 1, 15)); // NOI18N
+        lblEstadoLiebre.setText("La liebre esta durmiendo");
+        lblEstadoLiebre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 204, 0)));
+        getContentPane().add(lblEstadoLiebre, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 20, 180, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnJugarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJugarActionPerformed
-        
-    }//GEN-LAST:event_btnJugarActionPerformed
-
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        lblLiebre.setLocation(lblLiebre.getX() + 46,490);
+        lblLiebre.setLocation(lblLiebre.getX() + 46,190);
         lblTortuga.setLocation(lblTortuga.getX() + 46,270);
     }//GEN-LAST:event_btnIniciarActionPerformed
 
@@ -144,14 +138,14 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JButton btnJugar;
+    private javax.swing.JLabel lblEstadoLiebre;
+    private javax.swing.JLabel lblGanador;
+    private javax.swing.JLabel lblGanesLiebre;
+    private javax.swing.JLabel lblGanesTortuga;
     private javax.swing.JLabel lblLiebre;
     private javax.swing.JLabel lblPartidasGanadas;
-    private javax.swing.JLabel lblPartidasGanadasJ1;
-    private javax.swing.JLabel lblPartidasGanadasJ2;
     private javax.swing.JLabel lblPista;
     private javax.swing.JLabel lblSeparador;
-    private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblTortuga;
     // End of variables declaration//GEN-END:variables
 }
