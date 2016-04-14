@@ -6,8 +6,7 @@
 package fabula.app;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.Icon;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,11 +18,11 @@ public class Main extends javax.swing.JFrame {
     private boolean siguienteCarrera = false; //Permite verificar si se trata de  
     //una carrera nueva o la siguiente.
     protected boolean hayGanador = false;
-    protected int ganador = 0;
-
+    
     protected int carrerasGanadasLiebre;
     protected int carrerasGanadasTortuga;
 
+    protected int ganador = 0;
     /**
      * Creates new form Main
      */
@@ -32,7 +31,6 @@ public class Main extends javax.swing.JFrame {
 
         this.setLocationRelativeTo(null); //Centra la ventana.
         reestablecerCarrera();
-
     }
 
     /**
@@ -51,7 +49,6 @@ public class Main extends javax.swing.JFrame {
         lblTortuga = new javax.swing.JLabel();
         lblLiebre = new javax.swing.JLabel();
         lblSeparador = new javax.swing.JLabel();
-        lblConteo = new javax.swing.JLabel();
         lblPista = new javax.swing.JLabel();
         lblGanesTortuga = new javax.swing.JLabel();
         lblEstadoLiebre = new javax.swing.JLabel();
@@ -99,12 +96,6 @@ public class Main extends javax.swing.JFrame {
         lblSeparador.setIgnoreRepaint(true);
         getContentPane().add(lblSeparador, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 0, 40, -1));
 
-        lblConteo.setFont(new java.awt.Font("Futura", 1, 48)); // NOI18N
-        lblConteo.setForeground(new java.awt.Color(255, 255, 102));
-        lblConteo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblConteo.setText("¿Preparados?");
-        getContentPane().add(lblConteo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 310, 60));
-
         lblPista.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fabula/img/fondo.png"))); // NOI18N
         getContentPane().add(lblPista, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, -10, 640, 510));
 
@@ -114,7 +105,7 @@ public class Main extends javax.swing.JFrame {
 
         lblEstadoLiebre.setFont(new java.awt.Font("Futura", 1, 15)); // NOI18N
         lblEstadoLiebre.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEstadoLiebre.setText("La liebre esta lista");
+        lblEstadoLiebre.setText("Competidores listos");
         lblEstadoLiebre.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(255, 204, 0)));
         lblEstadoLiebre.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         getContentPane().add(lblEstadoLiebre, new org.netbeans.lib.awtextra.AbsoluteConstraints(4, 20, 180, 40));
@@ -123,59 +114,26 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-
+        
         if (siguienteCarrera) {
-            reestablecerCarrera(); //Si se trata de la siguiente carrera.
+        reestablecerCarrera(); //Si se trata de la siguiente carrera.
         }
         Competidor liebre = new Competidor(1, "Liebre", 500, 280, 190);
         Competidor tortuga = new Competidor(2, "Tortuga", 1000, 280, 260);
 
-        //Tiempo inicial de referencia
-        long tiempoInicial = System.currentTimeMillis();
-        Carrera carreraLiebre = new Carrera(liebre, tiempoInicial);
-        Carrera carreraTortuga = new Carrera(tortuga, tiempoInicial);
-
-        carreraLiebre.esperarMilisegundos(1500);
-        lblConteo.setText("Ya!!");
+        Carrera carreraLiebre = new Carrera(liebre);
+        Carrera carreraTortuga = new Carrera(tortuga);
 
         carreraLiebre.start();
         carreraTortuga.start();
-        
-//        try {
-//                Thread.sleep(10000);
-                competidorGanador();
-//            } catch (InterruptedException e) {
-//                Thread.currentThread().interrupt();
-//            }
-
     }//GEN-LAST:event_btnIniciarActionPerformed
 
     private void reestablecerCarrera() {
         this.lblLiebre.setLocation(280, 190);
         this.lblTortuga.setLocation(280, 260);
         this.lblGanador.setText("");
-        this.lblEstadoLiebre.setText("Competidores listos");
-        this.lblConteo.setText("¿Preparados?");
         this.hayGanador = false;
-        lblConteo.setVisible(true);
     }
-
-    
-    public void competidorGanador() {
-        hayGanador = true;
-        if (ganador == 1){  //Ganó la Liebre
-            carrerasGanadasLiebre++;
-            lblGanador.setText("Gana la liebre!");
-            lblGanesLiebre.setText("Liebre: " + carrerasGanadasLiebre);
-        } else {                      //Ganó la Tortuga
-            carrerasGanadasTortuga++;
-            lblGanador.setText("Gana la tortuga!");
-            lblGanesLiebre.setText("Tortuga: " + carrerasGanadasTortuga);
-        }
-
-        siguienteCarrera = true;
-    }
-    
     
     /**
      * @param args the command line arguments
@@ -214,7 +172,6 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIniciar;
-    private javax.swing.JLabel lblConteo;
     private javax.swing.JLabel lblEstadoLiebre;
     private javax.swing.JLabel lblGanador;
     private javax.swing.JLabel lblGanesLiebre;
@@ -231,88 +188,53 @@ public class Main extends javax.swing.JFrame {
         private Competidor competidor;
         private int contadorDistracciones = 0;
         private final int distancia = 10;
-        private Long tiempoInicial;
 
         ArrayList<Integer> distracciones; //AÑADIR A LOS DIAGRAMAS 
 
         // Constructor, getter y setter
-        public Carrera(Competidor competidor, Long tiempoInicial) {
+        public Carrera(Competidor competidor) {
             this.competidor = competidor;
-            this.tiempoInicial = tiempoInicial;
 
             //Agregando las distracciones a la lista en milisegundos.
             distracciones = new ArrayList();
-            distracciones.add(4000); // Comiendo  
-            distracciones.add(3000); // Jugando  
-            distracciones.add(5000); // Noviando  
-            distracciones.add(4000); // Durmiendo
-            distracciones.add(0); //Aleatoriamente puede caer en éste indice,
-        }                         //en donde simplemente avanza
-
-        public Competidor getCompetidor() {
-            return competidor;
-        }
-
-        public void setCompetidor(Competidor competidor) {
-            this.competidor = competidor;
-        }
-
-        public int getContadorDistracciones() {
-            return contadorDistracciones;
-        }
-
-        public void setContadorDistracciones(int contadorDistracciones) {
-            this.contadorDistracciones = contadorDistracciones;
-        }
-
-        public Long getTiempoInicial() {
-            return tiempoInicial;
-        }
-
-        public void setTiempoInicial(Long tiempoInicial) {
-            this.tiempoInicial = tiempoInicial;
-        }
-
+            distracciones.add(5000); // Comiendo  
+            distracciones.add(7500); // Jugando
+            distracciones.add(45000); // Noviando  
+            //Aleatoriamente puede caer en éste indice, en donde simplemente avanza
+            distracciones.add(0); 
+            distracciones.add(5500); // Durmiendo
+            
+        }                         
+        
         @Override
         public void run() {
-            if (this.competidor.getId() == 1) { //Si el competidor es la Liebre.
+            if (this.competidor.getId() == 1) { //Bloque de LA LIEBRE
                 //Hace el ciclo a la mitad de de la distancia puesto que dobla la velocidad de la tortuga.
                 for (int i = 0; i < (this.distancia / 2); i++) {
-                    if (hayGanador) //Si ya hay ganador, rompe en ciclo y se detiene el avance.
-                    {
-                        break;
-                    } else {
-                        this.avanzar(competidor.getVelocidad());
+                    //Si ya hay ganador, rompe en ciclo y se detiene el avance.
+                    if (hayGanador) break;
+                    else this.avanzar(competidor.getVelocidad());
 
-                        if (contadorDistracciones < 2) ejecutarDistraccion();
-//                        else mostrarEstadoDeLiebre(4);
-
-                    }
+                    if (contadorDistracciones < 2) ejecutarDistraccion();
                 }
-
-                if (!hayGanador)  // Si aun no hay ganador, la liebre es la ganadora.
-                    competidorGanador();
                 
-
-            } else { //Si el competidor es la tortuga.
+                if (!hayGanador) competidorGanador(1,"Liebre"); // La liebre es la ganadora.
+                
+            } else { //Bloque de LA TORTUGA
                 for (int i = 0; i < distancia; i++) {
-                    if (hayGanador) //Si ya hay ganador, rompe en ciclo y se detiene el avance.
-                    {
-                        break;
-                    } else {
-                        this.avanzar(competidor.getVelocidad());
-                    }
-
+                    //Si ya hay ganador, rompe en ciclo y se detiene el avance.                    
+                    if (hayGanador) break; 
+                    else this.avanzar(competidor.getVelocidad());
                 }
-                if (!hayGanador) // Si aun no hay ganador, la tortuga es la ganadora.
-                    competidorGanador();
+               
+                if (!hayGanador) competidorGanador(2,"Tortuga"); // La tortuga es la ganadora.
             }
         }
 
         public void ejecutarDistraccion() {
             if (!distracciones.isEmpty()) {
                 int i = (int) Math.round(Math.random() * (distracciones.size() - 1));
-//                mostrarEstadoDeLiebre(i);
+//                mostrarEstadoDeLiebre(i); // No se implementa en ésta versión de la aplicación.
                 esperarMilisegundos(distracciones.get(i));
                 distracciones.remove(i);
                 contadorDistracciones++;
@@ -327,7 +249,7 @@ public class Main extends javax.swing.JFrame {
             }
         }
 
-        // Métodos que intervienen con la interfaz gráfica.
+        // - - - - - - Métodos que intervienen con la interfaz gráfica - - - - - - 
         public void avanzar(int velocidad) {
             esperarMilisegundos(velocidad);
             if (this.competidor.getId() == 1) {
@@ -339,16 +261,37 @@ public class Main extends javax.swing.JFrame {
             }
         }
         
-        // Se lagguea cuando se ejecuta éste metodo por lo tanto no se implementa en ésta versión.
-        private void mostrarEstadoDeLiebre(int i) {
-            switch(i){
-                case 0: lblEstadoLiebre.setText("La liebre esta comiendo"); break;
-                case 1: lblEstadoLiebre.setText("La liebre esta jugando"); break;
-                case 2: lblEstadoLiebre.setText("La liebre esta noviando"); break;
-                case 3: lblEstadoLiebre.setText("La liebre esta durmiendo"); break;
-                case 4: lblEstadoLiebre.setText("La liebre esta corriendo"); break;
-            }
+        public void competidorGanador(int i, String nombre) {
+            hayGanador = true; siguienteCarrera = true;
+            //Variables para el mensaje que se muestra al terminar la carrera
+            Object[] options = {"Aceptar"};
+            Icon icon;
+            int aceptar;
+            
+            icon = (new javax.swing.ImageIcon(getClass().getResource("/fabula/img/"+ nombre.toLowerCase() + ".png")));
+            JOptionPane.showOptionDialog(null, "La " + nombre + " gana la carrera", "Carrera Terminada", JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+            lblGanador.setText("Gana la " + nombre + "!");
+            
+            if (i == 1){  //Ganó la Liebre
+                carrerasGanadasLiebre++;
+                lblGanesLiebre.setText("Liebre: " + carrerasGanadasLiebre);
+            } else {                      //Ganó la Tortuga
+                carrerasGanadasTortuga++;
+                lblGanesTortuga.setText("Tortuga: " + carrerasGanadasTortuga);
+            }    
         }
+        
+//         Se lagguea cuando se ejecuta éste metodo por lo tanto no se implementa en ésta versión.
+//        private void mostrarEstadoDeLiebre(int i) {
+//            switch(i){
+//                case 0: lblEstadoLiebre.setText("La liebre esta comiendo"); break;
+//                case 1: lblEstadoLiebre.setText("La liebre esta jugando"); break;
+//                case 2: lblEstadoLiebre.setText("La liebre esta noviando"); break;
+//                case 3: lblEstadoLiebre.setText("La liebre esta corriendo"); break;
+//                case 4: lblEstadoLiebre.setText("La liebre esta durmiendo"); break;
+//            }
+//        }
     }
 
 }

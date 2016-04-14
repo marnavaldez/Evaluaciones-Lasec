@@ -74,4 +74,7 @@ public class Competidor {
     public void setPosicionY(int posicionY) {
         this.posicionY = posicionY;
     }
+
+    
+    
 }
