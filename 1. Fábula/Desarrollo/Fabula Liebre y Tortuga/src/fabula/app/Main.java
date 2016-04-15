@@ -6,11 +6,8 @@
 package fabula.app;
 
 import java.util.ArrayList;
-import javafx.application.Application;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
-import java.awt.Image;
-import java.awt.Toolkit;
 
 
 
@@ -33,10 +30,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
-
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/fabula/img/app_logo.png")).getImage());
-        
-        
         this.setLocationRelativeTo(null); //Centra la ventana.
         reestablecerCarrera();
     }
