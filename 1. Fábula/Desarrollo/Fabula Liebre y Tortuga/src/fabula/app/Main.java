@@ -6,8 +6,13 @@
 package fabula.app;
 
 import java.util.ArrayList;
+import javafx.application.Application;
 import javax.swing.Icon;
 import javax.swing.JOptionPane;
+import java.awt.Image;
+import java.awt.Toolkit;
+
+
 
 /**
  *
@@ -29,6 +34,9 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
 
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/fabula/img/app_logo.png")).getImage());
+        
+        
         this.setLocationRelativeTo(null); //Centra la ventana.
         reestablecerCarrera();
     }
@@ -54,6 +62,7 @@ public class Main extends javax.swing.JFrame {
         lblEstadoLiebre = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Fábula La Liebre y la Tortuga");
         setMinimumSize(new java.awt.Dimension(828, 510));
         setPreferredSize(new java.awt.Dimension(828, 510));
         setSize(new java.awt.Dimension(828, 510));
