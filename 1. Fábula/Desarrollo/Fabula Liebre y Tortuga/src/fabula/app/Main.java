@@ -204,6 +204,7 @@ public class Main extends javax.swing.JFrame {
             //Aleatoriamente puede caer en éste indice, en donde simplemente avanza
             distracciones.add(0); 
             distracciones.add(6500); // Durmiendo
+            distracciones.add(4000); // Comiendo
             
         }                         
         
