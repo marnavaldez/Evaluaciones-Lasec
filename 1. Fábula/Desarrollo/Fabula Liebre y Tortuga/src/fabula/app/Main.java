@@ -117,7 +117,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
-        
+        this.btnIniciar.setEnabled(false);
         if (siguienteCarrera) {
         reestablecerCarrera(); //Si se trata de la siguiente carrera.
         }
@@ -200,12 +200,10 @@ public class Main extends javax.swing.JFrame {
 
             //Agregando las distracciones a la lista en milisegundos.
             distracciones = new ArrayList();
-            distracciones.add(5000); // Comiendo  
             distracciones.add(7500); // Jugando
-            distracciones.add(45000); // Noviando  
             //Aleatoriamente puede caer en éste indice, en donde simplemente avanza
             distracciones.add(0); 
-            distracciones.add(5500); // Durmiendo
+            distracciones.add(6500); // Durmiendo
             
         }                         
         
@@ -270,10 +268,17 @@ public class Main extends javax.swing.JFrame {
             Object[] options = {"Aceptar"};
             Icon icon;
             int aceptar;
+            String mensaje = "La " + nombre + " gana la carrera";
+            
+            if(i == 2)
+                mensaje += "\n\nLa liebre decepcionada tras haber perdido, "
+                        + "\nhizo un examen de conciencia y reconoció sus errores, " +
+                          "\ndescubrió que había perdido por ser presumida y confiada";
             
             icon = (new javax.swing.ImageIcon(getClass().getResource("/fabula/img/"+ nombre.toLowerCase() + ".png")));
-            JOptionPane.showOptionDialog(null, "La " + nombre + " gana la carrera", "Carrera Terminada", JOptionPane.DEFAULT_OPTION, 
+            JOptionPane.showOptionDialog(null, mensaje, "Carrera Terminada", JOptionPane.DEFAULT_OPTION, 
             JOptionPane.PLAIN_MESSAGE, icon, options, options[0]);
+            
             lblGanador.setText("Gana la " + nombre + "!");
             
             if (i == 1){  //Ganó la Liebre
@@ -282,7 +287,8 @@ public class Main extends javax.swing.JFrame {
             } else {                      //Ganó la Tortuga
                 carrerasGanadasTortuga++;
                 lblGanesTortuga.setText("Tortuga: " + carrerasGanadasTortuga);
-            }    
+            }
+            btnIniciar.setEnabled(true);
         }
         
 //         Se lagguea cuando se ejecuta éste metodo por lo tanto no se implementa en ésta versión.
